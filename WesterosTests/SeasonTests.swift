@@ -7,14 +7,19 @@
 //
 
 import XCTest
+import UIKit
+
 @testable import Westeros
 
 class SeasonTests: XCTestCase {
-    var season: Season!
+    var season1: Season!
+    var episode1: Episode!
     
     override func setUp() {
         super.setUp()
         
+        episode1 = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"))
+        season1 = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), episodes: [episode1])
     }
     
     override func tearDown() {
@@ -23,12 +28,14 @@ class SeasonTests: XCTestCase {
     }
     
     func testSeasonExistence() {
-        season = Season(numberOfEpisodes: 1, name: "Season 1", dateRelease: Date())
-        XCTAssertNotNil(season)
+        XCTAssertNotNil(season1)
     }
     
     func testSeasonNotExistence() {
-        season = Season(numberOfEpisodes: 0, name: "Season 1", dateRelease: Date())
+        let season = Season(name: "Season 1",
+                            dateRelease: Date(dateString: "2011-04-17"),
+                            episodes: [Episode]())
         XCTAssertNil(season)
     }
+    
 }
