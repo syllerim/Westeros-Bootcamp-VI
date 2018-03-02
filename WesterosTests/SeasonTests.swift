@@ -13,6 +13,7 @@ import UIKit
 
 class SeasonTests: XCTestCase {
     var season1: Season!
+    var season2: Season!
     var episode1: Episode!
     
     override func setUp() {
@@ -20,6 +21,7 @@ class SeasonTests: XCTestCase {
         
         episode1 = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"))
         season1 = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), episodes: [episode1])
+        season2 = Season(name: "Season 2", dateRelease: Date(dateString: "2012-04-17"), episodes: [episode1])
     }
     
     override func tearDown() {
@@ -38,4 +40,28 @@ class SeasonTests: XCTestCase {
         XCTAssertNil(season)
     }
     
+    func testSeasonDescription() {
+        let season2 = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), episodes: [episode1])
+        XCTAssertEqual(season1.description, season2?.description)
+    }
+    
+    func testSeasonEquality() {
+        //Test identity
+        XCTAssertEqual(season1, season1)
+        
+        //Test Equality
+        let seasonX = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), episodes: [episode1])
+        XCTAssertEqual(season1, seasonX)
+        
+        //Test UnEquality
+        XCTAssertNotEqual(season1, season2)
+    }
+    
+    func testSeasonHashable() {
+        XCTAssertNotNil(season1.hashValue)
+    }
+    
+    func testSeasonComapable() {
+        XCTAssertLessThan(season1, season2)
+    }
 }

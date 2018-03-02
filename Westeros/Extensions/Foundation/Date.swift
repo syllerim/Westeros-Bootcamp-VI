@@ -9,14 +9,21 @@
 import Foundation
 
 extension Date {
-        
+
     init(dateString:String) {
-        let dateStringFormatter = DateFormatter()
-        dateStringFormatter.dateFormat = "yyyy-MM-dd"
-        dateStringFormatter.locale = Locale(identifier: "en_US_POSIX")
-        let d = dateStringFormatter.date(from: dateString)!
+        let d = Date.formatter.date(from: dateString)!
         self.init(timeInterval:0, since:d)
     }
     
+    var toString: String {
+        return Date.formatter.string(from: self)
+    }
+    
+    static var formatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }
 
 }
