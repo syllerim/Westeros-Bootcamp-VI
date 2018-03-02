@@ -31,8 +31,11 @@ extension Episode: CustomStringConvertible {
 }
 
 extension Episode {
-    var proxyForEquatable: String {
-        return description
+    var proxyForEquality: Int {
+        var hash = 5381
+        hash = ((hash << 5) &+ hash) &+ title.hashValue
+        hash = ((hash << 5) &+ hash) &+ broadcastDate.hashValue
+        return hash
     }
     
     var proxyForComparison: String {
@@ -42,13 +45,13 @@ extension Episode {
 
 extension Episode: Equatable {
     static func ==(lhs: Episode, rhs: Episode) -> Bool {
-        return lhs.proxyForEquatable == rhs.proxyForEquatable
+        return lhs.proxyForEquality == rhs.proxyForEquality
     }
 }
 
 extension Episode: Hashable {
     var hashValue: Int {
-        return proxyForEquatable.hashValue
+        return proxyForEquality.hashValue
     }
 }
 

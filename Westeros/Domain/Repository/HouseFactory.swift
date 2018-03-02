@@ -1,35 +1,29 @@
 //
-//  Repository.swift
+//  HouseFactory.swift
 //  Westeros
 //
 //  Created by Alexandre Freire on 13/02/2018.
 //  Copyright © 2018 Alexandre Freire. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-
-final class Repository {
-    static let local = LocalFactory()
-}
-
 protocol HouseFactory {
-    
-    typealias Filter = (House) -> Bool
+    typealias FilterHouse = (House) -> Bool
     
     var houses: [House] { get }
     func house(named: String) -> House?
-    func houses(filteredBy: Filter) -> [House]
+    func houses(filteredBy: FilterHouse) -> [House]
 }
 
-final class LocalFactory: HouseFactory {
-    
+extension LocalFactory: HouseFactory {
     var houses: [House] {
         // Houses creation here
         let starkSigil = Sigil(image: UIImage(named: "codeIsComing.png")!, description: "Lobo Huargo")
         let lannisterSigil = Sigil(image: #imageLiteral(resourceName: "lannister.jpg"), description: "León rampante")
         let targaryenSigil = Sigil(image: UIImage(named: "targaryenSmall.jpg")!, description: "Dragón Tricéfalo")
-
+        
         let starkHouse = House(name: "Stark", sigil: starkSigil, words: "Se acerca el invierno", url: URL(string: "https://awoiaf.westeros.org/index.php/House_Stark")! )
         let lannisterHouse = House(name: "Lannister", sigil: lannisterSigil, words: "Oye mi rugido", url: URL(string: "https://awoiaf.westeros.org/index.php/House_Lannister")!)
         let targaryenHouse = House(name: "Targaryen", sigil: targaryenSigil, words: "Fuego y Sangre", url: URL(string: "https://awoiaf.westeros.org/index.php/House_Targaryen")!)
@@ -56,22 +50,12 @@ final class LocalFactory: HouseFactory {
     
     func house(named name: String) -> House? {
         let house = houses.filter{ $0.name.uppercased() == name.uppercased() }.first
-        //let house = houses.first{ $0.name.uppercased() == name.uppercased() }
         return house
     }
     
-    func houses(filteredBy: Filter) -> [House] {
+    func houses(filteredBy: FilterHouse) -> [House] {
         return Repository.local.houses.filter(filteredBy)
     }
     
     
-    
 }
-
-
-
-
-
-
-
-

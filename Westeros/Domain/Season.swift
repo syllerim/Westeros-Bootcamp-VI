@@ -6,42 +6,70 @@
 //  Copyright © 2018 Mirellys Arteta Davila. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+typealias Episodes = Set<Episode>
 
 class Season {
     let name: String
     let dateRelease: Date
-    private var _episodes: [Episode]
+    private var _episodes: Episodes
     
-    var episodes: [Episode] {
+    var episodes: Episodes {
         get {
             return _episodes
         }
     }
     
-    init?(name: String, dateRelease: Date, episodes: [Episode]) {
+    init?(name: String, dateRelease: Date, episodes: Episodes) {
         guard episodes.count > 0 else { return nil }
         self.name = name
         self.dateRelease = dateRelease
-        _episodes = [Episode]()
+        self._episodes = Episodes()
         
-        _episodes.forEach { episode in
-            episode.season = self
-        }
+        add(episodes: episodes)
+    }
+}
+
+extension Season {
+    var count: Int {
+        return _episodes.count
+    }
+    
+    var sortedEpisodes: [Episode] {
+        return _episodes.sorted()
+    }
+    
+    func add(episode: Episode) {
+        episode.season = self
+        _episodes.insert(episode)
+    }
+    
+    func add(episodes: Episode...) {
+        episodes.forEach{ add(episode: $0) }
+    }
+    
+    func add(episodes: Episodes) {
+        episodes.forEach{ add(episode: $0) }
     }
 }
 
 extension Season: CustomStringConvertible {
     var description: String {
-        let episodesDescription = _episodes.reduce("- ") { $0.description + $1.description }
-        return "\(name) - \(dateRelease.toString)\(episodesDescription)"
+        return "\(name) - \(dateRelease.toString)"
     }
 }
 
 extension Season {
-    var proxyEquatable: String {
-        return description
+    
+    var proxyForEquality: Int {
+        var hash = 5381
+        hash = ((hash << 5) &+ hash) &+ name.hashValue
+        hash = ((hash << 5) &+ hash) &+ dateRelease.hashValue
+        hash = episodes.reduce(hash) { (($0 << 5) &+ $0) &+ $1.hashValue }
+        return hash
     }
+    
     var proxyForComparison: String {
         return dateRelease.toString.uppercased()
     }
@@ -49,13 +77,13 @@ extension Season {
 
 extension Season: Equatable {
     static func ==(lhs: Season, rhs: Season) -> Bool {
-        return lhs.proxyEquatable == rhs.proxyEquatable
+        return lhs.proxyForEquality == rhs.proxyForEquality
     }
 }
 
 extension Season: Hashable {
     var hashValue: Int {
-        return proxyEquatable.hashValue
+        return proxyForEquality.hashValue
     }
 }
 

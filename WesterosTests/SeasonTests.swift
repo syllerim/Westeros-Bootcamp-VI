@@ -19,9 +19,8 @@ class SeasonTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        episode1 = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"))
-        season1 = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), episodes: [episode1])
-        season2 = Season(name: "Season 2", dateRelease: Date(dateString: "2012-04-17"), episodes: [episode1])
+        season1 = Repository.local.season(named: "Season 1")
+        season2 = Repository.local.season(named: "Season 2")
     }
     
     override func tearDown() {
@@ -36,13 +35,12 @@ class SeasonTests: XCTestCase {
     func testSeasonNotExistence() {
         let season = Season(name: "Season 1",
                             dateRelease: Date(dateString: "2011-04-17"),
-                            episodes: [Episode]())
+                            episodes: Set<Episode>())
         XCTAssertNil(season)
     }
     
     func testSeasonDescription() {
-        let season2: Season! = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), episodes: [episode1])
-        XCTAssertEqual(season1.description, season2.description)
+        XCTAssertNotNil(season1.description)
     }
     
     func testSeasonEquality() {
@@ -50,9 +48,14 @@ class SeasonTests: XCTestCase {
         XCTAssertEqual(season1, season1)
 
         //Test Equality
-        let seasonX: Season! = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), episodes: [episode1])
-        XCTAssertEqual(season1, seasonX)
-
+        let episodeX = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"))
+        let episodeY = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"))
+        
+        let seasonX: Season! = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), episodes: Set<Episode>(arrayLiteral: episodeX))
+        let seasonY: Season! = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), episodes: Set<Episode>(arrayLiteral: episodeY))
+        
+        XCTAssertEqual(seasonX, seasonY)
+        
         //Test UnEquality
         XCTAssertNotEqual(season1, season2)
     }

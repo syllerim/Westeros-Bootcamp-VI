@@ -18,7 +18,6 @@
 		4BAFC98D20323A8500C8BF74 /* HouseDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BAFC98B20323A8500C8BF74 /* HouseDetailViewController.xib */; };
 		4BAFC99120337C8500C8BF74 /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAFC99020337C8500C8BF74 /* UIViewController+Additions.swift */; };
 		4BAFC9932033807900C8BF74 /* RepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAFC9922033807900C8BF74 /* RepositoryTests.swift */; };
-		4BAFC9952033816C00C8BF74 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAFC9942033816C00C8BF74 /* Repository.swift */; };
 		4BC6ADD5203B607C00813C0D /* House.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC93617202CF1BA007FE051 /* House.swift */; };
 		4BC6ADDB203B68C100813C0D /* MemberListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC6ADD9203B68C100813C0D /* MemberListViewController.swift */; };
 		4BC6ADDC203B68C100813C0D /* MemberListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BC6ADDA203B68C100813C0D /* MemberListViewController.xib */; };
@@ -33,6 +32,9 @@
 		7B28D494204809FF00B49586 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28D493204809FF00B49586 /* Episode.swift */; };
 		7B6B6FD22048790900598618 /* EpisodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6B6FD12048790900598618 /* EpisodeTests.swift */; };
 		7B6BC15D20481499000A2A74 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6BC15C20481499000A2A74 /* Date.swift */; };
+		7BCB3A0B2049F00700336AB8 /* HouseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB3A082049F00700336AB8 /* HouseFactory.swift */; };
+		7BCB3A0C2049F00700336AB8 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB3A092049F00700336AB8 /* Repository.swift */; };
+		7BCB3A0F2049F41600336AB8 /* SeasonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB3A0E2049F41500336AB8 /* SeasonFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +59,6 @@
 		4BAFC98B20323A8500C8BF74 /* HouseDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HouseDetailViewController.xib; sourceTree = "<group>"; };
 		4BAFC99020337C8500C8BF74 /* UIViewController+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
 		4BAFC9922033807900C8BF74 /* RepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTests.swift; sourceTree = "<group>"; };
-		4BAFC9942033816C00C8BF74 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		4BC6ADD9203B68C100813C0D /* MemberListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListViewController.swift; sourceTree = "<group>"; };
 		4BC6ADDA203B68C100813C0D /* MemberListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberListViewController.xib; sourceTree = "<group>"; };
 		4BC935F1202CE4A7007FE051 /* Westeros.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Westeros.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +77,9 @@
 		7B28D493204809FF00B49586 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		7B6B6FD12048790900598618 /* EpisodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTests.swift; sourceTree = "<group>"; };
 		7B6BC15C20481499000A2A74 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		7BCB3A082049F00700336AB8 /* HouseFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseFactory.swift; sourceTree = "<group>"; };
+		7BCB3A092049F00700336AB8 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		7BCB3A0E2049F41500336AB8 /* SeasonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,9 +182,9 @@
 		4BC93619202CF82C007FE051 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				7BCB3A072049F00700336AB8 /* Repository */,
 				4BC93617202CF1BA007FE051 /* House.swift */,
 				4BC9361C202CFDF0007FE051 /* Person.swift */,
-				4BAFC9942033816C00C8BF74 /* Repository.swift */,
 				7B28D4912047019400B49586 /* Season.swift */,
 				7B28D493204809FF00B49586 /* Episode.swift */,
 			);
@@ -202,6 +206,16 @@
 				7B6BC15C20481499000A2A74 /* Date.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		7BCB3A072049F00700336AB8 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				7BCB3A092049F00700336AB8 /* Repository.swift */,
+				7BCB3A082049F00700336AB8 /* HouseFactory.swift */,
+				7BCB3A0E2049F41500336AB8 /* SeasonFactory.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,14 +346,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BAFC98C20323A8500C8BF74 /* HouseDetailViewController.swift in Sources */,
+				7BCB3A0F2049F41600336AB8 /* SeasonFactory.swift in Sources */,
 				4BC9361D202CFDF0007FE051 /* Person.swift in Sources */,
 				7B28D4922047019400B49586 /* Season.swift in Sources */,
 				7B6BC15D20481499000A2A74 /* Date.swift in Sources */,
 				4BC6ADD5203B607C00813C0D /* House.swift in Sources */,
 				4BAFC99120337C8500C8BF74 /* UIViewController+Additions.swift in Sources */,
 				7B28D494204809FF00B49586 /* Episode.swift in Sources */,
+				7BCB3A0C2049F00700336AB8 /* Repository.swift in Sources */,
 				4BC935F5202CE4A7007FE051 /* AppDelegate.swift in Sources */,
-				4BAFC9952033816C00C8BF74 /* Repository.swift in Sources */,
+				7BCB3A0B2049F00700336AB8 /* HouseFactory.swift in Sources */,
 				4B52842B20362B8D00E03DD6 /* WikiViewController.swift in Sources */,
 				4B528433203644F600E03DD6 /* HouseListViewController.swift in Sources */,
 				4BC6ADDB203B68C100813C0D /* MemberListViewController.swift in Sources */,

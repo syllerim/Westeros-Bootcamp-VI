@@ -21,9 +21,9 @@ class EpisodeTests: XCTestCase {
         episode1 = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"))
         episode2 = Episode(title: "The Kinkgsroad", broadcastDate: Date(dateString: "2011-04-24"))
         
-        var episodes = [Episode]()
-        episodes.append(episode1)
-        episodes.append(episode2)
+        var episodes = Set<Episode>()
+        episodes.insert(episode1)
+        episodes.insert(episode2)
         
         season1 = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), episodes: episodes)
     }
@@ -38,7 +38,8 @@ class EpisodeTests: XCTestCase {
     }
     
     func testEpisodeWithoutSeason() {
-        XCTAssertNil(episode1.season)
+        let episode = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"))
+        XCTAssertNil(episode.season)
     }
     
     func testEpisodeNameValid() {
@@ -47,14 +48,8 @@ class EpisodeTests: XCTestCase {
         }
     }
     
-    func testEpisodeTitleValid(){
-        season1.episodes.forEach { ep in
-            XCTAssertEqual(ep.title, episode1.title)
-        }
-    }
-    
     func testEpisodeDescription() {
-        XCTAssertEqual(episode1.description, "\(episode1.title) - \(episode1.broadcastDate.toString)")
+        XCTAssertNotNil(episode1.description)
     }
     
     func testEpisodeEquality() {
@@ -62,7 +57,7 @@ class EpisodeTests: XCTestCase {
         XCTAssertEqual(episode1, episode1)
         
         //Test Equality
-        let episodeX = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"))
+        let episodeX = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"), season: season1)
         XCTAssertEqual(episode1, episodeX)
         
         //Test UnEquality
