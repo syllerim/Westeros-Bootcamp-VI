@@ -96,14 +96,29 @@ extension LocalFactory: SeasonFactory {
         let episodesS06:Set<Episode> = [episode51, episode52, episode53, episode54, episode55, episode56, episode57, episode58, episode59, episode60]
         let episodesS07:Set<Episode> = [episode61, episode62, episode63, episode64, episode65, episode66, episode67]
 
+        //let summaries
+        let summarySeason1 = "The story takes place in a fictional world, primarily upon a continent called Westeros, with one storyline occurring on another continent to the east known as Essos. Like the novel, the season initially focuses on the family of nobleman Eddard Stark, who is asked to become chief advisor to his king and longtime friend, Robert Baratheon. Ned must find out who killed the previous Hand of the King, Jon Arryn, while trying to protect his family from their rivals the Lannisters. He uncovers the dark secrets about the Lannisters that his predecessor died trying to expose. Meanwhile, in Essos, the exiled Viserys Targaryen, son of the former king, believes he still has the rightful claim to the throne."
+        
+        let summarySeason2 = "The story takes place in a fictional world, primarily upon a continent called Westeros, with one storyline occurring on another continent to the east known as Essos. Like the novel, the season follows the dramatic death of Lord Eddard 'Ned' Stark, with all of the Starks being separated across Westeros. Season two mainly centres around the War of the Five Kings, fought between the leaders of Westerosi factions who are either staking a claim on the Iron Throne, or seeking independence from it."
+        
+        let summarySeason3 = "The story takes place in a fictional world, primarily upon a continent called Westeros, with one storyline occurring on another continent to the east known as Essos. Like the novel, the season follows the climactic battle at Kings Landing. Season three like the previous season mainly centers around the war of the five kings; after the death of Renly Baratheon, all four kings in Westeros believes to have a claim to the Iron Throne, besides Robb Stark, who seeks vengeance for the death of his father, Lord Eddard 'Ned' Stark."
+        
+        let summarySeason4 = "The story takes place in a fictional world, primarily upon a continent called Westeros, with one storyline occurring on another continent to the east known as Essos. Like the novel, the season like the previous seasons mainly centres around the war of the five kings; after the death of Robb Stark at The Red Wedding, all three remaining kings in Westeros believe to have a claim to the Iron Throne. Meanwhile, at the wall, Jon Snow and the Night's Watch get ready for the battle against the free folk."
+        
+        let summarySeason5 = "The season primarily adapts material from A Feast for Crows and A Dance with Dragons, the fourth and fifth novels in George R. R. Martin's A Song of Ice and Fire series, though it also uses elements from the third novel, A Storm of Swords, as well as the upcoming sixth novel The Winds of Winter.  It also contains original content not found in Martin's novels. The series is adapted for television by David Benioff and D. B. Weiss."
+        
+        let summarySeason6 = "The season follows the continuing struggle between the Starks and other noble families of Westeros for the Iron Throne. The Starks defeat the Bolton forces in battle, and Jon Snow is proclaimed the King in the North. Tyrion attempts to rule Meereen while Daenerys is held captive by a Dothraki tribe. At King's Landing, the Tyrell army attempts to liberate Margaery and Loras, but Margaery capitulates to the High Sparrow, who becomes more powerful by influencing King Tommen. At her trial, Cersei burns the Great Sept, killing her rivals, while Tommen kills himself. Cersei is crowned Queen of the Seven Kingdoms. Ellaria Sand and three of Oberyn Martell's daughters kill Doran and Trystane Martell and seize control of Dorne. In Essos, Daenerys Targaryen is captured by Khal Moro who takes her before the khals; she burns them alive and takes command of the Dothraki. Olenna and the Dornish ally with Daenerys."
+        
+        let summarySeason7 = "The penultimate season focuses primarily on the convergence of the show's main plotlines, featuring major events such as Daenerys Targaryen arriving in Westeros with her army and three dragons and waging war against the Lannisters, Jon Snow forging an alliance with Daenerys in an attempt to unite their forces against the White Walker army, Arya and Bran returning to Winterfell and reuniting with their sister Sansa, and the army of the dead breaching the Wall (with the help of a reanimated wight dragon) and entering the Seven Kingdoms."
+        
         //Create Seasons
-        let season1: Season! = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), episodes: episodesS01)
-        let season2: Season! = Season(name: "Season 2", dateRelease: Date(dateString: "2012-04-01"), episodes: episodesS02)
-        let season3: Season! = Season(name: "Season 3", dateRelease: Date(dateString: "2013-03-31"), episodes: episodesS03)
-        let season4: Season! = Season(name: "Season 4", dateRelease: Date(dateString: "2014-04-06"), episodes: episodesS04)
-        let season5: Season! = Season(name: "Season 5", dateRelease: Date(dateString: "2015-04-12"), episodes: episodesS05)
-        let season6: Season! = Season(name: "Season 6", dateRelease: Date(dateString: "2016-04-24"), episodes: episodesS06)
-        let season7: Season! = Season(name: "Season 7", dateRelease: Date(dateString: "2017-07-16"), episodes: episodesS07)
+        let season1: Season! = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), summary: summarySeason1, image: #imageLiteral(resourceName: "got-season1.jpg"), episodes: episodesS01)
+        let season2: Season! = Season(name: "Season 2", dateRelease: Date(dateString: "2012-04-01"), summary: summarySeason2, image: #imageLiteral(resourceName: "got-season2.jpg"), episodes: episodesS02)
+        let season3: Season! = Season(name: "Season 3", dateRelease: Date(dateString: "2013-03-31"), summary: summarySeason3, image: #imageLiteral(resourceName: "got-season3.jpg"), episodes: episodesS03)
+        let season4: Season! = Season(name: "Season 4", dateRelease: Date(dateString: "2014-04-06"), summary: summarySeason4, image: #imageLiteral(resourceName: "got-season4.jpg"), episodes: episodesS04)
+        let season5: Season! = Season(name: "Season 5", dateRelease: Date(dateString: "2015-04-12"), summary: summarySeason5, image: #imageLiteral(resourceName: "got-season5.png"), episodes: episodesS05)
+        let season6: Season! = Season(name: "Season 6", dateRelease: Date(dateString: "2016-04-24"), summary: summarySeason6, image: #imageLiteral(resourceName: "got-season6.jpeg"), episodes: episodesS06)
+        let season7: Season! = Season(name: "Season 7", dateRelease: Date(dateString: "2017-07-16"), summary: summarySeason7, image: #imageLiteral(resourceName: "got-season7.png"), episodes: episodesS07)
         
         return [season1, season2, season3, season4, season5, season6, season7].sorted()
     }

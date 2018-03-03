@@ -13,6 +13,8 @@ typealias Episodes = Set<Episode>
 class Season {
     let name: String
     let dateRelease: Date
+    let summary: String
+    let image: UIImage
     private var _episodes: Episodes
     
     var episodes: Episodes {
@@ -21,10 +23,12 @@ class Season {
         }
     }
     
-    init?(name: String, dateRelease: Date, episodes: Episodes) {
+    init?(name: String, dateRelease: Date, summary: String, image: UIImage, episodes: Episodes) {
         guard episodes.count > 0 else { return nil }
         self.name = name
         self.dateRelease = dateRelease
+        self.summary = summary
+        self.image = image
         self._episodes = Episodes()
         
         add(episodes: episodes)

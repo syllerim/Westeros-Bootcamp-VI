@@ -35,6 +35,8 @@ class SeasonTests: XCTestCase {
     func testSeasonNotExistence() {
         let season = Season(name: "Season 1",
                             dateRelease: Date(dateString: "2011-04-17"),
+                            summary: "test",
+                            image: #imageLiteral(resourceName: "got-season1.jpg"),
                             episodes: Set<Episode>())
         XCTAssertNil(season)
     }
@@ -51,8 +53,8 @@ class SeasonTests: XCTestCase {
         let episodeX = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"))
         let episodeY = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"))
         
-        let seasonX: Season! = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), episodes: Set<Episode>(arrayLiteral: episodeX))
-        let seasonY: Season! = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), episodes: Set<Episode>(arrayLiteral: episodeY))
+        let seasonX: Season! = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), summary: "test", image: #imageLiteral(resourceName: "got-season1.jpg"), episodes: Set<Episode>(arrayLiteral: episodeX))
+        let seasonY: Season! = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), summary: "test", image: #imageLiteral(resourceName: "got-season1.jpg"), episodes: Set<Episode>(arrayLiteral: episodeY))
         
         XCTAssertEqual(seasonX, seasonY)
         

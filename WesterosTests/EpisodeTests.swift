@@ -25,7 +25,7 @@ class EpisodeTests: XCTestCase {
         episodes.insert(episode1)
         episodes.insert(episode2)
         
-        season1 = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), episodes: episodes)
+        season1 = Season(name: "Season 1", dateRelease: Date(dateString: "2011-04-17"), summary: "", image: #imageLiteral(resourceName: "got-season1.jpg"), episodes: episodes)
     }
     
     override func tearDown() {
