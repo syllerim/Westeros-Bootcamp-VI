@@ -44,6 +44,11 @@ class SeasonDetailViewController: UIViewController {
         seasonSummaryLabel.text = model.summary
         
     }
+    
+    @IBAction func seeListEpisodesButton(_ sender: Any) {
+        
+    }
+    
 }
 
 extension SeasonDetailViewController: SeasonListViewControllerDelegate {

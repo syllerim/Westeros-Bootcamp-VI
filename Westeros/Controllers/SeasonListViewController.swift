@@ -8,6 +8,9 @@
 
 import UIKit
 
+let SEASON_KEY = "SeasonKey"
+let LAST_SEASON = "LAST_SEASON"
+
 protocol SeasonListViewControllerDelegate: class {
     func seasonListViewController(_ viewController: SeasonListViewController, didSelectSeason: Season)
 }
@@ -35,7 +38,7 @@ class SeasonListViewController: UIViewController {
 
 }
 
-//MARK:- DataSource
+//MARK:- UITableViewDataSource
 extension SeasonListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,11 +56,28 @@ extension SeasonListViewController: UITableViewDataSource {
     
 }
 
+//MARK:- UITableViewDelegate
 extension SeasonListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let season = model[indexPath.row]
         delegate?.seasonListViewController(self, didSelectSeason: season)
+        
+        saveLastSelectedSeason(at: indexPath.row)
     }
     
 }
 
+//MARK:- UserDefaults Last Season
+extension SeasonListViewController {
+    func saveLastSelectedSeason(at row: Int) {
+        let defaults = UserDefaults.standard
+        defaults.set(row, forKey: LAST_SEASON)
+        defaults.synchronize()
+    }
+    
+    func lastSelectedSeason() -> Season {
+        let row = UserDefaults.standard.integer(forKey: LAST_SEASON)
+        let season = model[row]
+        return season
+    }
+}

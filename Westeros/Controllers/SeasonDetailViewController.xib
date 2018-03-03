@@ -31,14 +31,14 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="951-7T-HaZ">
-                    <rect key="frame" x="87" y="136" width="200" height="300"/>
+                    <rect key="frame" x="87" y="136" width="200" height="250"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="300" id="QkZ-QF-FAz"/>
+                        <constraint firstAttribute="height" constant="250" id="QkZ-QF-FAz"/>
                         <constraint firstAttribute="width" constant="200" id="gmV-Ji-6Kh"/>
                     </constraints>
                 </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBE-zK-pzw">
-                    <rect key="frame" x="16" y="468" width="343" height="183"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBE-zK-pzw">
+                    <rect key="frame" x="16" y="402" width="343" height="203"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -50,13 +50,22 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUF-c8-U58">
+                    <rect key="frame" x="164" y="621" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="seeListEpisodesButton:" destination="-1" eventType="touchUpInside" id="NdU-cY-8cu"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="DUF-c8-U58" secondAttribute="bottom" constant="16" id="GH7-J1-0M3"/>
                 <constraint firstItem="951-7T-HaZ" firstAttribute="top" secondItem="RRk-Yk-w9S" secondAttribute="bottom" constant="16" id="JRB-B5-nBe"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pBE-zK-pzw" secondAttribute="trailing" constant="16" id="La5-a8-AID"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="pBE-zK-pzw" secondAttribute="bottom" constant="16" id="Pjv-nT-Kaz"/>
-                <constraint firstItem="pBE-zK-pzw" firstAttribute="top" secondItem="951-7T-HaZ" secondAttribute="bottom" constant="32" id="RgY-l0-TYw"/>
+                <constraint firstItem="pBE-zK-pzw" firstAttribute="top" secondItem="951-7T-HaZ" secondAttribute="bottom" constant="16" id="RgY-l0-TYw"/>
+                <constraint firstItem="DUF-c8-U58" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SiJ-o9-Phm"/>
+                <constraint firstItem="DUF-c8-U58" firstAttribute="top" secondItem="pBE-zK-pzw" secondAttribute="bottom" constant="16" id="SvZ-AA-exT"/>
                 <constraint firstItem="RRk-Yk-w9S" firstAttribute="centerX" secondItem="AFw-Nr-JuH" secondAttribute="centerX" id="TQc-Fc-Giq"/>
                 <constraint firstItem="951-7T-HaZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YyW-7F-AUP"/>
                 <constraint firstItem="RRk-Yk-w9S" firstAttribute="top" secondItem="AFw-Nr-JuH" secondAttribute="bottom" constant="26" id="bWM-Cf-H4n"/>
