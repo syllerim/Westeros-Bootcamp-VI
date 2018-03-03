@@ -18,8 +18,8 @@ class EpisodeTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        episode1 = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"))
-        episode2 = Episode(title: "The Kinkgsroad", broadcastDate: Date(dateString: "2011-04-24"))
+        episode1 = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"), summary: "text")
+        episode2 = Episode(title: "The Kinkgsroad", broadcastDate: Date(dateString: "2011-04-24"), summary: "text")
         
         var episodes = Set<Episode>()
         episodes.insert(episode1)
@@ -38,7 +38,7 @@ class EpisodeTests: XCTestCase {
     }
     
     func testEpisodeWithoutSeason() {
-        let episode = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"))
+        let episode = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"), summary: "text")
         XCTAssertNil(episode.season)
     }
     
@@ -57,7 +57,7 @@ class EpisodeTests: XCTestCase {
         XCTAssertEqual(episode1, episode1)
         
         //Test Equality
-        let episodeX = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"), season: season1)
+        let episodeX = Episode(title: "Winter Is Coming", broadcastDate: Date(dateString: "2011-04-17"), summary: "text", season: season1)
         XCTAssertEqual(episode1, episodeX)
         
         //Test UnEquality
