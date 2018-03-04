@@ -32,6 +32,7 @@
 		7B28D494204809FF00B49586 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28D493204809FF00B49586 /* Episode.swift */; };
 		7B6B6FD22048790900598618 /* EpisodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6B6FD12048790900598618 /* EpisodeTests.swift */; };
 		7B6BC15D20481499000A2A74 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6BC15C20481499000A2A74 /* Date.swift */; };
+		7B945522204C309E0031A12B /* characters.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B945521204C309D0031A12B /* characters.json */; };
 		7BCB3A0B2049F00700336AB8 /* HouseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB3A082049F00700336AB8 /* HouseFactory.swift */; };
 		7BCB3A0C2049F00700336AB8 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB3A092049F00700336AB8 /* Repository.swift */; };
 		7BCB3A0F2049F41600336AB8 /* SeasonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB3A0E2049F41500336AB8 /* SeasonFactory.swift */; };
@@ -94,6 +95,7 @@
 		7B28D493204809FF00B49586 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		7B6B6FD12048790900598618 /* EpisodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTests.swift; sourceTree = "<group>"; };
 		7B6BC15C20481499000A2A74 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		7B945521204C309D0031A12B /* characters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = characters.json; sourceTree = "<group>"; };
 		7BCB3A082049F00700336AB8 /* HouseFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseFactory.swift; sourceTree = "<group>"; };
 		7BCB3A092049F00700336AB8 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		7BCB3A0E2049F41500336AB8 /* SeasonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonFactory.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				4BC935F4202CE4A7007FE051 /* AppDelegate.swift */,
 				4BC935FB202CE4A7007FE051 /* Assets.xcassets */,
 				4BC935FD202CE4A7007FE051 /* LaunchScreen.storyboard */,
+				7B945521204C309D0031A12B /* characters.json */,
 				4BC93600202CE4A7007FE051 /* Info.plist */,
 			);
 			path = Westeros;
@@ -367,6 +370,7 @@
 				4B52842C20362B8D00E03DD6 /* WikiViewController.xib in Resources */,
 				7BCB3A23204B14AC00336AB8 /* got-season1.jpg in Resources */,
 				7BCB3A21204B14AC00336AB8 /* got-season4.jpg in Resources */,
+				7B945522204C309E0031A12B /* characters.json in Resources */,
 				7BCB3A24204B14AC00336AB8 /* got-season3.jpg in Resources */,
 				7BCB3A26204B14AC00336AB8 /* got-season5.png in Resources */,
 				7BCB3A19204B0E3100336AB8 /* SeasonDetailViewController.xib in Resources */,

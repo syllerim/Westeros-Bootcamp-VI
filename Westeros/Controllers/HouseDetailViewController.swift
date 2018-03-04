@@ -43,7 +43,7 @@ class HouseDetailViewController: UIViewController {
     func syncModelWithView() {
         // Model -> View
         houseNameLabel.text = "House \(model.name)"
-        sigilImageView.image = model.sigil.image
+        sigilImageView.image = UIImage(named: model.sigil.image)
         wordsLabel.text = model.words
     }
     

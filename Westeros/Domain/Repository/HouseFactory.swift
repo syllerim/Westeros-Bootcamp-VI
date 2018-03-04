@@ -19,15 +19,17 @@ protocol HouseFactory {
 }
 
 extension LocalFactory: HouseFactory {
-    var houses: [House] {
-        // Houses creation here
-        let starkSigil = Sigil(image: UIImage(named: "codeIsComing.png")!, description: "Lobo Huargo")
-        let lannisterSigil = Sigil(image: #imageLiteral(resourceName: "lannister.jpg"), description: "León rampante")
-        let targaryenSigil = Sigil(image: UIImage(named: "targaryenSmall.jpg")!, description: "Dragón Tricéfalo")
+    
+    var localDataHouses: [House] {
         
-        let starkHouse = House(name: .stark, sigil: starkSigil, words: "Se acerca el invierno", url: URL(string: "https://awoiaf.westeros.org/index.php/House_Stark")! )
-        let lannisterHouse = House(name: .lannister, sigil: lannisterSigil, words: "Oye mi rugido", url: URL(string: "https://awoiaf.westeros.org/index.php/House_Lannister")!)
-        let targaryenHouse = House(name: .targaryen, sigil: targaryenSigil, words: "Fuego y Sangre", url: URL(string: "https://awoiaf.westeros.org/index.php/House_Targaryen")!)
+        // Houses creation here in memory
+        let starkSigil = Sigil(image: "codeIsComing.png", description: "Lobo Huargo")
+        let lannisterSigil = Sigil(image: "lannister.jpg", description: "León rampante")
+        let targaryenSigil = Sigil(image: "targaryenSmall.jpg", description: "Dragón Tricéfalo")
+        
+        let starkHouse = House(name: .stark, sigil: starkSigil, words: "Se acerca el invierno", url: "https://awoiaf.westeros.org/index.php/House_Stark")
+        let lannisterHouse = House(name: .lannister, sigil: lannisterSigil, words: "Oye mi rugido", url: "https://awoiaf.westeros.org/index.php/House_Lannister")
+        let targaryenHouse = House(name: .targaryen, sigil: targaryenSigil, words: "Fuego y Sangre", url: "https://awoiaf.westeros.org/index.php/House_Targaryen")
         
         let _ = Person(name: "Robb", alias: "El Joven Lobo", house: starkHouse)
         let _ = Person(name: "Arya", house: starkHouse)
@@ -39,6 +41,34 @@ extension LocalFactory: HouseFactory {
         let _ = Person(name: "Daenerys", alias: "Madre de Dragones", house: targaryenHouse)
         
         return [starkHouse, lannisterHouse, targaryenHouse].sorted()
+    }
+
+    var houses: [House] {
+        var houses = [House]()
+        if let fileURL = Bundle.main.url(forResource:"characters", withExtension: "json") {
+            do {
+                let dataJSON = try Data.init(contentsOf: fileURL)
+                let persons = try JSONDecoder().decode([Person].self, from: dataJSON)
+                
+                let housesName = Set(persons.flatMap{ ($0.house.name) })
+                
+                housesName.forEach({ houseName in
+                    let p = persons.filter({ $0.house.name == houseName })
+                    if let h = p.first?.house {
+                        let house = House(name: h.name, sigil: h.sigil, words: h.words, url: h.wikiURL)
+                        p.forEach({ person in
+                            house.add(person: person)
+                        })
+                        houses.append(house)
+                    }
+                })
+                
+            } catch {
+                print(error)
+            }
+        }
+        return houses.sorted()
+        
     }
     
     func house(named name: String) -> House? {
@@ -53,5 +83,7 @@ extension LocalFactory: HouseFactory {
     func house(name: HouseName) -> House? {
         return houses.filter{ $0.name.rawValue == name.rawValue }.first
     }
+    
+    
 
 }

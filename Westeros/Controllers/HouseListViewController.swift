@@ -66,7 +66,7 @@ class HouseListViewController: UITableViewController {
         }
         
         // Sincroniza house (model) con cell (vista)
-        cell?.imageView?.image = house.sigil.image
+        cell?.imageView?.image = UIImage(named: house.sigil.image)
         cell?.textLabel?.text = house.name.rawValue
         
         return cell!

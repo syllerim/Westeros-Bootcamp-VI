@@ -38,11 +38,19 @@ class HouseTests: XCTestCase {
     }
 
     func testAddPersons() {
-        XCTAssertEqual(starkHouse.count, 2)
-        XCTAssertEqual(lannisterHouse.count, 3)
+        //Test for data loaded in memory
+//        XCTAssertEqual(starkHouse.count, 2)
+//        XCTAssertEqual(lannisterHouse.count, 3)
+//
+//        let _ = Person(name: "Viserys", house: targaryenHouse)
+//        XCTAssertEqual(targaryenHouse.count, 2)
+        
+        //Test from JSON
+        XCTAssertEqual(starkHouse.count, 6)
+        XCTAssertEqual(lannisterHouse.count, 2)
         
         let _ = Person(name: "Viserys", house: targaryenHouse)
-        XCTAssertEqual(targaryenHouse.count, 2)
+        XCTAssertEqual(targaryenHouse.count, 9)
     }
 
     func testHouseEquality() {
@@ -50,12 +58,16 @@ class HouseTests: XCTestCase {
         XCTAssertEqual(starkHouse, starkHouse)
 
         // Igualdad
-        let starkSigil = Sigil(image: UIImage(named: "codeIsComing.png")!, description: "Lobo Huargo")
-        let jinxed = House(name: .stark, sigil: starkSigil, words: "Se acerca el invierno", url: URL(string: "https://awoiaf.westeros.org/index.php/House_Stark")! )
+        let sg = Sigil(image: "codeIsComing.png", description: "Lobo Huargo")
+        let sh = House(name: .stark, sigil: sg, words: "Se acerca el invierno", url: "https://awoiaf.westeros.org/index.php/House_Stark")
+        let _ = Person(name: "Arya", house: sh)
+        let _ = Person(name: "Robb", alias: "El Joven Lobo", house: sh)
+        
+        let jinxed = House(name: .stark, sigil: sg, words: "Se acerca el invierno", url: "https://awoiaf.westeros.org/index.php/House_Stark" )
         let _ = Person(name: "Robb", alias: "El Joven Lobo", house: jinxed)
         let _ = Person(name: "Arya", house: jinxed)
         
-        XCTAssertEqual(starkHouse, jinxed)
+        XCTAssertEqual(sh, jinxed)
 
         // Desigualdad
         XCTAssertNotEqual(starkHouse, lannisterHouse)
@@ -70,8 +82,11 @@ class HouseTests: XCTestCase {
     }
 
     func testHouseReturnsSortedArrayOfMembers() {
+        let starkSigil = Sigil(image: "codeIsComing.png", description: "Lobo Huargo")
+        let starkHouse = House(name: .stark, sigil: starkSigil, words: "Se acerca el invierno", url: "https://awoiaf.westeros.org/index.php/House_Stark")
         let arya = Person(name: "Arya", house: starkHouse)
         let robb = Person(name: "Robb", alias: "El Joven Lobo", house: starkHouse)
+        
         XCTAssertEqual(starkHouse.sortedMembers, [arya, robb])
     }
     

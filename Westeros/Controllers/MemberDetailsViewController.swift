@@ -44,7 +44,7 @@ class MemberDetailsViewController: UIViewController {
     // MARK:- Sync
     func syncModelWithView() {
         personName.text = model.name
-        personImageView.image = model.house.sigil.image
+        personImageView.image = UIImage(named: model.house.sigil.image)
     }
     
     //MARK:- Notifications

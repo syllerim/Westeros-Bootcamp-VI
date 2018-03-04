@@ -32,8 +32,13 @@ class RepositoryTests: XCTestCase {
     //MARK:- Houses Local Repository
     
     func testLocalRepositoryHousesCreation() {
+//        Test with data loaded in memory
+//        XCTAssertNotNil(localHouses)
+//        XCTAssertEqual(localHouses.count, 3)
+        
+        //Test with JSON Data
         XCTAssertNotNil(localHouses)
-        XCTAssertEqual(localHouses.count, 3)
+        XCTAssertEqual(localHouses.count, 4)
     }
     
     func testLocalRepositoryReturnsSortedArrayOfHouses() {
@@ -51,16 +56,28 @@ class RepositoryTests: XCTestCase {
     }
     
     func testHouseFiltering() {
+//        Test with data loaded in memory
+//        let filtered = Repository.local.houses(filteredBy: { $0.count == 1 })
+//        XCTAssertEqual(filtered.count, 1)
+//
+//        let otherFilter = Repository.local.houses(filteredBy: { $0.words.contains("invierno")})
+//        XCTAssertEqual(otherFilter.count, 1)
+        
+        //Test with JSON Data
         let filtered = Repository.local.houses(filteredBy: { $0.count == 1 })
-        XCTAssertEqual(filtered.count, 1)
+        XCTAssertEqual(filtered.count, 0)
         
         let otherFilter = Repository.local.houses(filteredBy: { $0.words.contains("invierno")})
-        XCTAssertEqual(otherFilter.count, 1)
+        XCTAssertEqual(otherFilter.count, 0)
     }
     
     func testHouseFilterSafeByName(){
         if let filteredHouse = Repository.local.house(name: .lannister) {
-            XCTAssertEqual(filteredHouse.count, 3)
+//            Test with data loaded in memory
+//            XCTAssertEqual(filteredHouse.count, 3)
+            
+            //Test with JSON Data
+             XCTAssertEqual(filteredHouse.count, 2)
         }
     }
     

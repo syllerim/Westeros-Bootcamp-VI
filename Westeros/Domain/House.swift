@@ -15,22 +15,39 @@ enum HouseName: String {
     case stark = "Stark"
     case lannister = "Lannister"
     case targaryen = "Targaryen"
+    case tyrell = "Tyrell"
 }
 
 // MARK: - House
-final class House {
+final class House: Decodable {
     let name: HouseName
     let sigil: Sigil
     let words: Words
-    let wikiURL: URL
+    let wikiURL: String
     private var _members: Members
     
-    
-    init(name: HouseName, sigil: Sigil, words: Words, url: URL) {
+    init(name: HouseName, sigil: Sigil, words: Words, url: String) {
         self.name = name
         self.sigil = sigil
         self.words = words
         self.wikiURL = url
+        _members = Members()
+    }
+    
+    enum HouseKeys: String, CodingKey {
+        case name
+        case words
+        case url = "url"
+        case sigil
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: HouseKeys.self)
+        let nameValue = try values.decode(String.self, forKey: .name)
+        name = HouseName(rawValue: nameValue)!
+        words = try values.decode(String.self, forKey: .words)
+        wikiURL = try values.decode(String.self, forKey: .url)
+        sigil = try values.decode(Sigil.self, forKey: .sigil)
         _members = Members()
     }
 }
@@ -45,19 +62,9 @@ extension House {
     }
     
     func add(person: Person) {
-        guard person.house == self else {
-            return
-        }
         _members.insert(person)
     }
     
-    func add(persons: Person...) {
-        // Aqui, persons es de tipo [Person]
-//        for person in persons {
-//            add(person: person)
-//        }
-        persons.forEach{ add(person: $0) }
-    }
 }
 
 // MARK: - Proxy
@@ -94,19 +101,24 @@ extension House: Comparable {
 
 
 // MARK: - Sigil
-final class Sigil {
+final class Sigil: Decodable {
     let description: String
-    let image: UIImage
+    let image: String
     
-    init(image: UIImage, description: String) {
+    init(image: String, description: String) {
         self.image = image
         self.description = description
     }
+    
+    enum SigilKeys: String, CodingKey {
+        case image
+        case description
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: SigilKeys.self)
+        image = try values.decode(String.self, forKey: .image)
+        description = try values.decode(String.self, forKey: .description)
+    }
+    
 }
-
-
-
-
-
-
-
