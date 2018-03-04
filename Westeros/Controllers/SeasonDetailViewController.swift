@@ -22,8 +22,8 @@ class SeasonDetailViewController: UIViewController {
     //MARK:- Initialization
     init(model: Season) {
         self.model = model
-        
         super.init(nibName: nil, bundle: Bundle(for: type(of: self)))
+        title = "Season Details"
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,6 +33,7 @@ class SeasonDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.title = "Season Details"
         syncModelWithView()
     }
     
@@ -46,7 +47,8 @@ class SeasonDetailViewController: UIViewController {
     }
     
     @IBAction func seeListEpisodesButton(_ sender: Any) {
-        
+        let episodeListViewController = EpisodeListViewController(model: Array(model.episodes))
+        navigationController?.pushViewController(episodeListViewController, animated: true)
     }
     
 }

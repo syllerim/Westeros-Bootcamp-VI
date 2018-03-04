@@ -13,28 +13,49 @@ class EpisodeListViewController: UIViewController {
     //MARK:- Outlets
     @IBOutlet var tableView: UITableView!
     
-    let model: [Episode]
+    //MARK:- Properties
+    var model: [Episode]
     
     // Mark: - Initialization
     init(model: [Episode]) {
         self.model = model
         super.init(nibName: nil, bundle: nil)
         title = "Episodes"
+        
+        subscribeToNotificationCenter()
+    }
+    
+    deinit {
+        unSubscribeToNotificationCenter()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    func subscribeToNotificationCenter() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(seasonDidChange),
+                                       name: Notification.Name(SEASON_DID_CHANGE_NOTIFICATION_NAME),
+                                       object: nil)
     }
     
+    func unSubscribeToNotificationCenter() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.removeObserver(self)
+    }
     
-    
-    
+    @objc func seasonDidChange(notification: Notification) {
+        guard let info = notification.userInfo else {
+            return
+        }
+        
+        if let season = info[SEASON_KEY] as? Season {
+            model = Array(season.episodes)
+            tableView.reloadData()
+        }
+        
+    }
 }
 
 //MARK:- DataSource
@@ -57,8 +78,12 @@ extension EpisodeListViewController: UITableViewDataSource {
 
 //MARK:- Delegate
 extension EpisodeListViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let episode = model[indexPath.row]
+        let vepisodeDetailsViewController = EpisodeDetailsViewController(model: episode)
+        navigationController?.pushViewController(vepisodeDetailsViewController, animated: true)
     }
+    
     
 }

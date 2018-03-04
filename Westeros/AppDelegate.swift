@@ -75,9 +75,10 @@ extension AppDelegate: UITabBarControllerDelegate {
            
             switch viewController.title! {
             case "Seasons":
-                splitViewController.viewControllers.append(seasonDetailViewController)
+//                let nav = UINavigationController(rootViewController: )
+                splitViewController.viewControllers.append(seasonDetailViewController.wrappedInNavigation())
             default:
-                splitViewController.viewControllers.append(houseDetailViewController)
+                splitViewController.viewControllers.append(houseDetailViewController.wrappedInNavigation())
             }
         }
     }

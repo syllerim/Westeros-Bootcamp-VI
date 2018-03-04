@@ -51,8 +51,8 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUF-c8-U58">
-                    <rect key="frame" x="164" y="621" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
+                    <rect key="frame" x="140.5" y="621" width="93" height="30"/>
+                    <state key="normal" title="See Episodes"/>
                     <connections>
                         <action selector="seeListEpisodesButton:" destination="-1" eventType="touchUpInside" id="NdU-cY-8cu"/>
                     </connections>

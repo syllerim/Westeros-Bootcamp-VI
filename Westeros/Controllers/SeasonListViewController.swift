@@ -9,6 +9,7 @@
 import UIKit
 
 let SEASON_KEY = "SeasonKey"
+let SEASON_DID_CHANGE_NOTIFICATION_NAME = "SeasonDidChange"
 let LAST_SEASON = "LAST_SEASON"
 
 protocol SeasonListViewControllerDelegate: class {
@@ -35,7 +36,11 @@ class SeasonListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.title = "Season List"
+    }
 }
 
 //MARK:- UITableViewDataSource
@@ -61,6 +66,12 @@ extension SeasonListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let season = model[indexPath.row]
         delegate?.seasonListViewController(self, didSelectSeason: season)
+        
+        let notificationCenter = NotificationCenter.default
+        let notification = Notification(name: Notification.Name(SEASON_DID_CHANGE_NOTIFICATION_NAME),
+                                        object: self,
+                                        userInfo: [SEASON_KEY : season])
+        notificationCenter.post(notification)
         
         saveLastSelectedSeason(at: indexPath.row)
     }
