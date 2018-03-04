@@ -24,7 +24,7 @@ class HouseDetailViewController: UIViewController {
         self.model = model
         // Llamas a super
         super.init(nibName: nil, bundle: Bundle(for: type(of: self)))
-        title = model.name
+        title = "House Details"
     }
     
     // Chapuza de los de Cupertino relacionada con los nil
@@ -69,6 +69,12 @@ class HouseDetailViewController: UIViewController {
         
         // Hacemos Push
         navigationController?.pushViewController(memberListViewController, animated: true)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        print("aqui")
     }
 }
 

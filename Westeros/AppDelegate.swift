@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let splitViewController = UISplitViewController()
     
-    
     //MARK:- AppDelegate Methods
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
@@ -39,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [houseListViewController.wrappedInNavigation(), seasonListViewController.wrappedInNavigation()]
+        tabBarController.delegate = self
+        
         tabBarSelected = houseListViewController.title!
         
         // Controladores para detailsVC
@@ -51,9 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         seasonListViewController.delegate = seasonDetailViewController
         
         // Crear el UISplitVC y le asignamos los viewControllers (master y detail)
+        splitViewController.preferredDisplayMode = .allVisible
         splitViewController.viewControllers = [ tabBarController, houseDetailViewController.wrappedInNavigation() ]
-        
-        tabBarController.delegate = self
         
         // Asignamos el rootVC
         window?.rootViewController = splitViewController
@@ -71,17 +71,18 @@ extension AppDelegate: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if viewController.title != tabBarSelected {
             tabBarSelected = viewController.title!
-            splitViewController.viewControllers.removeLast()
-           
+            
             switch viewController.title! {
             case "Seasons":
-//                let nav = UINavigationController(rootViewController: )
-                splitViewController.viewControllers.append(seasonDetailViewController.wrappedInNavigation())
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    splitViewController.showDetailViewController(seasonDetailViewController.wrappedInNavigation(), sender: self)
+                }
             default:
-                splitViewController.viewControllers.append(houseDetailViewController.wrappedInNavigation())
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    splitViewController.showDetailViewController(houseDetailViewController.wrappedInNavigation(), sender: self)
+                }
             }
         }
     }
-    
     
 }

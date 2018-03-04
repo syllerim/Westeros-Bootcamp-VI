@@ -82,7 +82,12 @@ class HouseListViewController: UITableViewController {
         let house = model[indexPath.row]
         
         // Aviso al delegado
-        delegate?.houseListViewController(self, didSelectHouse: house)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            delegate?.houseListViewController(self, didSelectHouse: house)
+        } else if UIDevice.current.userInterfaceIdiom == .phone {
+            let houseDetailVC = HouseDetailViewController(model: house)
+            navigationController?.pushViewController(houseDetailVC, animated: true)
+        }
         
         // Mando la misma info a traves de notificaciones
         let notificationCenter = NotificationCenter.default
