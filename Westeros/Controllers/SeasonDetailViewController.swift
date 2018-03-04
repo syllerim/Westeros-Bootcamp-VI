@@ -10,16 +10,16 @@ import UIKit
 
 class SeasonDetailViewController: UIViewController {
 
-    //MARK:- Outlets
+    // MARK:- Outlets
     @IBOutlet var seasonNameLabel: UILabel!
     @IBOutlet var seasonDateReleaseLabel: UILabel!
     @IBOutlet var seasonCoverImageView: UIImageView!
     @IBOutlet var seasonSummaryLabel: UITextView!
     
-    //MARK:- Properties
+    // MARK:- Properties
     var model: Season
     
-    //MARK:- Initialization
+    // MARK:- Initialization
     init(model: Season) {
         self.model = model
         super.init(nibName: nil, bundle: Bundle(for: type(of: self)))
@@ -30,10 +30,10 @@ class SeasonDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK:- Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.title = "Season Details"
         syncModelWithView()
     }
     
@@ -53,6 +53,7 @@ class SeasonDetailViewController: UIViewController {
     
 }
 
+// MARK:- SeasonListViewControllerDelegate
 extension SeasonDetailViewController: SeasonListViewControllerDelegate {
     
     func seasonListViewController(_ viewController: SeasonListViewController, didSelectSeason season: Season) {

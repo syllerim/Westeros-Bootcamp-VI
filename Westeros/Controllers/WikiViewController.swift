@@ -11,14 +11,14 @@ import WebKit
 
 class WikiViewController: UIViewController {
     
-    // Mark: - Outlets
+    // MARK:- Outlets
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     
-    // Mark: - Properties
+    // MARK:- Properties
     var model: House
     
-    // Mark: - Initialization
+    // MARK:- Initialization
     init(model: House) {
         self.model = model
         super.init(nibName: nil, bundle: nil)
@@ -31,7 +31,7 @@ class WikiViewController: UIViewController {
     
     
    
-    // Mark: - Life Cycle
+    // MARK:- Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         loadingView.isHidden = false
@@ -57,18 +57,16 @@ class WikiViewController: UIViewController {
         notificationCenter.removeObserver(self)
     }
     
-    // MARK: - Sync
+    // MARK:- Sync
     func syncModelWithView() {
         title = model.name
         webView.load(URLRequest(url: model.wikiURL))
     }
     
-    // MARK: - Notifications
+    // MARK:- Notifications
     @objc func houseDidChange(notification: Notification) {
         // Extraer el userInfo de la notification
-        guard let info = notification.userInfo else {
-            return
-        }
+        guard let info = notification.userInfo else { return }
         
         // Sacar la casa del userInfo
         let house = info[HOUSE_KEY] as? House
@@ -98,18 +96,3 @@ extension WikiViewController: WKNavigationDelegate {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

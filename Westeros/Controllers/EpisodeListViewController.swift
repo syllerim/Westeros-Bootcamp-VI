@@ -16,7 +16,7 @@ class EpisodeListViewController: UIViewController {
     //MARK:- Properties
     var model: [Episode]
     
-    // Mark: - Initialization
+    // MARK: - Initialization
     init(model: [Episode]) {
         self.model = model
         super.init(nibName: nil, bundle: nil)
@@ -33,6 +33,7 @@ class EpisodeListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK:- Notifications
     func subscribeToNotificationCenter() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(seasonDidChange),
@@ -46,19 +47,16 @@ class EpisodeListViewController: UIViewController {
     }
     
     @objc func seasonDidChange(notification: Notification) {
-        guard let info = notification.userInfo else {
-            return
-        }
+        guard let info = notification.userInfo else { return }
         
         if let season = info[SEASON_KEY] as? Season {
             model = Array(season.episodes)
             tableView.reloadData()
         }
-        
     }
 }
 
-//MARK:- DataSource
+// MARK:- DataSource
 extension EpisodeListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,13 +74,13 @@ extension EpisodeListViewController: UITableViewDataSource {
     
 }
 
-//MARK:- Delegate
+// MARK:- Delegate
 extension EpisodeListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let episode = model[indexPath.row]
-        let vepisodeDetailsViewController = EpisodeDetailsViewController(model: episode)
-        navigationController?.pushViewController(vepisodeDetailsViewController, animated: true)
+        let episodeDetailsViewController = EpisodeDetailsViewController(model: episode)
+        navigationController?.pushViewController(episodeDetailsViewController, animated: true)
     }
     
     

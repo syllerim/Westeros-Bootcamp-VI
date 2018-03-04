@@ -17,14 +17,13 @@ protocol HouseListViewControllerDelegate: class {
     func houseListViewController(_ viewController: HouseListViewController, didSelectHouse: House)
 }
 
-
 class HouseListViewController: UITableViewController {
     
-    // Mark: - Properties
+    // MARK:- Properties
     let model: [House]
     weak var delegate: HouseListViewControllerDelegate?
     
-    // Mark: - Initialization
+    // MARK:- Initialization
     init(model: [House]) {
         self.model = model
         super.init(style: .plain)
@@ -35,7 +34,7 @@ class HouseListViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // Mark: - Life Cycle
+    // MARK:- Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let lastRow = UserDefaults.standard.integer(forKey: LAST_HOUSE)
@@ -44,7 +43,7 @@ class HouseListViewController: UITableViewController {
         tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
     }
     
-    // MARK: - Table view data source
+    // MARK:- Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -53,7 +52,6 @@ class HouseListViewController: UITableViewController {
         return model.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cellId = "HouseCell"
@@ -75,8 +73,6 @@ class HouseListViewController: UITableViewController {
         
     }
     
-    // MARK: Table View Delegate
-    // should, will, did
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Averiguar que casa han pulsado
         let house = model[indexPath.row]
@@ -91,17 +87,18 @@ class HouseListViewController: UITableViewController {
         
         // Mando la misma info a traves de notificaciones
         let notificationCenter = NotificationCenter.default
-        
         let notification = Notification(name: Notification.Name(HOUSE_DID_CHANGE_NOTIFICATION_NAME), object: self, userInfo: [HOUSE_KEY : house])
-        
         notificationCenter.post(notification)
         
         // Guardar las coordenadas (section, row) de la ultima casa seleccionada
         saveLastSelectedHouse(at: indexPath.row)
     }
+    
+    
 }
 
 extension HouseListViewController {
+    
     func saveLastSelectedHouse(at row: Int) {
         let defaults = UserDefaults.standard
         defaults.set(row, forKey: LAST_HOUSE)
@@ -119,19 +116,6 @@ extension HouseListViewController {
         // Devolverla
         return house
     }
+    
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -10,53 +10,51 @@ import UIKit
 
 class MemberListViewController: UIViewController {
 
-    // Mark: - Outlets
+    // MARK:- Outlets
     @IBOutlet weak var tableView: UITableView!
     
-    // Mark: - Properties
+    // MARK:- Properties
     var model: [Person]
     
-    // Mark: - Initialization
+    // MARK:- Initialization
     init(model: [Person]) {
         self.model = model
         super.init(nibName: nil, bundle: nil)
         title = "Members"
+        
+        subscribeToNotifications()
     }
     
+    deinit {
+        unSubscribeToNotifications()
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // Mark: - Life Cycle
+   // MARK:- Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Asignamos la fuente de datos
         tableView.dataSource = self
+        tableView.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Nos damos de alta ...
+    // MARK:- Notifications
+    func subscribeToNotifications() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(houseDidChange), name: Notification.Name(HOUSE_DID_CHANGE_NOTIFICATION_NAME), object: nil)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Nos damos de baja ...
+    func unSubscribeToNotifications(){
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
     }
     
-    // MARK: - Notifications
     @objc func houseDidChange(notification: Notification) {
         // Extraer el userInfo de la notification
-        guard let info = notification.userInfo else {
-            return
-        }
+        guard let info = notification.userInfo else { return }
         
         // Sacar la casa del userInfo
         if let house = info[HOUSE_KEY] as? House {
@@ -66,7 +64,7 @@ class MemberListViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDataSource
+// MARK:- DataSource
 extension MemberListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,12 +89,11 @@ extension MemberListViewController: UITableViewDataSource {
     }
 }
 
-
-
-
-
-
-
-
-
-
+// MARK:- Delegate
+extension MemberListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let member = model[indexPath.row]
+        let memberDetailsViewController = MemberDetailsViewController(model: member)
+        navigationController?.pushViewController(memberDetailsViewController, animated: true)
+    }
+}

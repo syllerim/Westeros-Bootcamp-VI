@@ -10,15 +10,15 @@ import UIKit
 
 class HouseDetailViewController: UIViewController {
 
-    // Mark: - Outlets
+    // MARK:- Outlets
     @IBOutlet weak var houseNameLabel: UILabel!
     @IBOutlet weak var wordsLabel: UILabel!
     @IBOutlet weak var sigilImageView: UIImageView!
     
-    // Mark: - Properties
+    // MARK:- Properties
     var model: House
     
-    // Mark: - Initialization
+    // MARK:- Initialization
     init(model: House) {
         // Primero, limpias tu propio desorder
         self.model = model
@@ -32,14 +32,14 @@ class HouseDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // Mark: - Life Cycle
+    // MARK:- Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupUI()
         syncModelWithView()
     }
     
-    // Mark: - Sync
+    // MARK:- Sync
     func syncModelWithView() {
         // Model -> View
         houseNameLabel.text = "House \(model.name)"
@@ -47,7 +47,7 @@ class HouseDetailViewController: UIViewController {
         wordsLabel.text = model.words
     }
     
-    // MARK: - UI
+    // MARK:- UI
     func setupUI() {
         let wikiButton = UIBarButtonItem(title: "Wiki", style: .plain, target: self, action: #selector(displayWiki))
         let members = UIBarButtonItem(title: "Members", style: .plain, target: self, action: #selector(displayMembers))
@@ -71,31 +71,15 @@ class HouseDetailViewController: UIViewController {
         navigationController?.pushViewController(memberListViewController, animated: true)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        print("aqui")
-    }
+    
 }
 
 extension HouseDetailViewController: HouseListViewControllerDelegate {
+    
     func houseListViewController(_ viewController: HouseListViewController, didSelectHouse house: House) {
         self.model = house
         syncModelWithView()
     }
+    
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

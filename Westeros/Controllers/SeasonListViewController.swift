@@ -18,14 +18,14 @@ protocol SeasonListViewControllerDelegate: class {
 
 class SeasonListViewController: UIViewController {
 
-    //MARK:- Outlets
+    // MARK:- Outlets
     @IBOutlet var tableView: UITableView!
     
-    //MARK:- Properties
+    // MARK:- Properties
     let model: [Season]
     weak var delegate: SeasonListViewControllerDelegate?
     
-    // Mark: - Initialization
+    // MARK: - Initialization
     init(model: [Season]) {
         self.model = model
         super.init(nibName: nil, bundle: nil)
@@ -35,15 +35,11 @@ class SeasonListViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.title = "Season List"
-    }
 }
 
-//MARK:- UITableViewDataSource
+// MARK:- UITableViewDataSource
 extension SeasonListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,16 +49,19 @@ extension SeasonListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellId = "SeasonCell"
         let season = model[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId) ?? UITableViewCell(style: .default, reuseIdentifier: cellId)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId) ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
+        
         cell.textLabel?.text = season.name
+        cell.detailTextLabel?.text = season.dateRelease.toDayString
         return cell
     }
     
     
 }
 
-//MARK:- UITableViewDelegate
+// MARK:- UITableViewDelegate
 extension SeasonListViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let season = model[indexPath.row]
         
@@ -82,9 +81,10 @@ extension SeasonListViewController: UITableViewDelegate {
         saveLastSelectedSeason(at: indexPath.row)
     }
     
+    
 }
 
-//MARK:- UserDefaults Last Season
+// MARK:- UserDefaults Last Season
 extension SeasonListViewController {
     func saveLastSelectedSeason(at row: Int) {
         let defaults = UserDefaults.standard

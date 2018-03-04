@@ -19,11 +19,18 @@ extension Date {
         return Date.formatter.string(from: self)
     }
     
+    var toDayString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMM d"
+        return dateFormatter.string(from: self)
+    }
+    
     static var formatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }
-
+    
+    
 }
