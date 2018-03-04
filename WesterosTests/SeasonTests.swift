@@ -69,4 +69,5 @@ class SeasonTests: XCTestCase {
     func testSeasonComapable() {
         XCTAssertLessThan(season1, season2)
     }
+    
 }

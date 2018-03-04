@@ -11,15 +11,22 @@ import UIKit
 typealias Words = String
 typealias Members = Set<Person>
 
+enum HouseName: String {
+    case stark = "Stark"
+    case lannister = "Lannister"
+    case targaryen = "Targaryen"
+}
+
 // MARK: - House
 final class House {
-    let name: String
+    let name: HouseName
     let sigil: Sigil
     let words: Words
     let wikiURL: URL
     private var _members: Members
     
-    init(name: String, sigil: Sigil, words: Words, url: URL) {
+    
+    init(name: HouseName, sigil: Sigil, words: Words, url: URL) {
         self.name = name
         self.sigil = sigil
         self.words = words
@@ -56,11 +63,11 @@ extension House {
 // MARK: - Proxy
 extension House {
     var proxyForEquality: String {
-        return "\(name) \(words) \(count)"
+        return "\(name.rawValue) \(words) \(count)"
     }
     
     var proxyForComparison: String {
-        return name.uppercased() // Alexander > Alexandre
+        return name.rawValue.uppercased() // Alexander > Alexandre
     }
 }
 
@@ -85,6 +92,7 @@ extension House: Comparable {
     }
 }
 
+
 // MARK: - Sigil
 final class Sigil {
     let description: String
@@ -95,12 +103,6 @@ final class Sigil {
         self.description = description
     }
 }
-
-
-
-
-
-
 
 
 
